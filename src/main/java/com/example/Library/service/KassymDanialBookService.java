@@ -3,12 +3,13 @@ package com.example.Library.service;
 import com.example.Library.domain.Book;
 import com.example.Library.domain.repository.BookRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class KassymDanialBookService {
@@ -19,11 +20,14 @@ public class KassymDanialBookService {
     }
 
     public Book getBookById(Long id) {
+        log.info("Getting book with id: {}", id);
         return bookRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Book not found"));
     }
 
     public Book createBook(Book book) {
+        log.info("Creating new book: {}", book.getTitle());
+
         return bookRepository.save(book);
     }
 

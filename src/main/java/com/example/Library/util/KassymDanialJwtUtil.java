@@ -8,7 +8,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import java.util.Date;
 
 @Component
-public class DanialKassymJwtUtil {
+public class KassymDanialJwtUtil {
 
     private final String SECRET_KEY = "secretKey";
 

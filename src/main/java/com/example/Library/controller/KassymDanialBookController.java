@@ -1,4 +1,4 @@
-package com.example.Library.controller.dto;
+package com.example.Library.controller;
 
 public class KassymDanialBookController {
 }

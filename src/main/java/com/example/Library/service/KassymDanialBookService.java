@@ -3,6 +3,8 @@ package com.example.Library.service;
 import com.example.Library.domain.Book;
 import com.example.Library.domain.repository.BookRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -37,5 +39,9 @@ public class KassymDanialBookService {
 
     public void deleteBook(Long id) {
         bookRepository.deleteById(id);
+    }
+
+    public Page<Book> searchBooks(String title, Pageable pageable) {
+        return bookRepository.findByTitleContainingIgnoreCase(title, pageable);
     }
 }

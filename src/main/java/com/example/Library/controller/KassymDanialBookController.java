@@ -34,9 +34,7 @@ public class KassymDanialBookController {
 
         Book book = bookMapper.toEntity(dto);
 
-        Book savedBook = bookService.createBook(book);
-
-        return bookMapper.toDto(savedBook);
+        return bookMapper.toDto(bookService.createBook(book));
     }
 
     @PutMapping("/{id}")

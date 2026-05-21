@@ -1,7 +1,11 @@
 package com.example.Library.controller;
 
+import com.example.Library.controller.dto.BookRequestDto;
+import com.example.Library.controller.dto.BookResponseDto;
 import com.example.Library.domain.Book;
+import com.example.Library.domain.mapper.BookMapper;
 import com.example.Library.service.KassymDanialBookService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +17,7 @@ import java.util.List;
 public class KassymDanialBookController {
 
     private final KassymDanialBookService bookService;
+    private final BookMapper bookMapper;
 
     @GetMapping
     public List<Book> getAllBooks() {
@@ -20,13 +25,18 @@ public class KassymDanialBookController {
     }
 
     @GetMapping("/{id}")
-    public Book getBookById(@PathVariable Long id) {
-        return bookService.getBookById(id);
+    public BookResponseDto getBookById(@PathVariable Long id) {
+        return bookMapper.toDto(bookService.getBookById(id));
     }
 
     @PostMapping
-    public Book createBook(@RequestBody Book book) {
-        return bookService.createBook(book);
+    public BookResponseDto createBook(@Valid @RequestBody BookRequestDto dto) {
+
+        Book book = bookMapper.toEntity(dto);
+
+        Book savedBook = bookService.createBook(book);
+
+        return bookMapper.toDto(savedBook);
     }
 
     @PutMapping("/{id}")

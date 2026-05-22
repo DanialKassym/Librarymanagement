@@ -36,6 +36,4 @@ out/
 
 ### VS Code ###
 .vscode/
-README.md
-*.md
 /src/main/resources/application.example.properties

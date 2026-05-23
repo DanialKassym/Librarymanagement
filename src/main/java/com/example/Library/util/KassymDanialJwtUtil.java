@@ -10,7 +10,7 @@ import java.util.Date;
 @Component
 public class KassymDanialJwtUtil {
 
-    private final String SECRET_KEY = "secretKey";
+    private final String SECRET_KEY = "secretKeyJavaismyfavouriteProgrammingLanguage";
 
     public String generateToken(String username) {
 
